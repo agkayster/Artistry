@@ -5,8 +5,44 @@
   "repository": "git@github.com:agkayster/Artistry.git",
   "author": "Ejike Chiboka <ejike.chiboka@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "seed": "node db/seeds.js",
+    "serve:backend": "nodemon",
+    "serve:frontend": "webpack-dev-server --node development"
+  },
   "dependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "axios": "^0.19.1",
+    "babel-loader": "^8.0.6",
+    "bcrypt": "^3.0.7",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "bulma": "^0.8.0",
+    "css-loader": "^3.4.2",
     "express": "^4.17.1",
-    "mongoose": "^5.8.7"
+    "fontawesome": "^5.6.3",
+    "html-webpack-plugin": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.7",
+    "mongoose-unique-validator": "^2.0.3",
+    "node-sass": "^4.13.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-rating": "^2.0.3",
+    "react-router-dom": "^5.1.2",
+    "react-toastify": "^5.5.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.17.0"
   }
 }

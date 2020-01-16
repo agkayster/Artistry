@@ -46,6 +46,30 @@ function deleteRoute(req, res){
     })
 }
 
+function commentCreateRoute(req, res){
+  req.body.user = req.currentUser._id
+  Artist.findById(req.params.id)
+    .then(airport =>{
+      if(!airport) return res.sendStatus(404)
+      airport.comments.push(req.body)
+      return airport.save()
+    })
+    .then(airport => res.json(airport))
+}
+function commentDeleteRoute(req, res){
+  Artist.findById(req.params.id)
+    .then(airport =>{
+      if(!airport) return res.sendStatus(404)
+
+      const comment = airport.comments.id(req.params.commentId)
+      if(!comment) return res.sendStatus(404)
+
+      comment.remove()
+      return airport.save()
+    })
+    .then(airport => res.json(airport))
+}
+
 
 
 
@@ -54,5 +78,7 @@ module.exports = {
   show: showRoute,
   create: createRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  commentCreate: commentCreateRoute,
+  commentDelete: commentDeleteRoute
 }

@@ -5,7 +5,7 @@ const Artist = require('../models/Artist')
 const artistData = require('./data/artistData')
 
 
-mongoose.connect(dbURI, { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(dbURI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
   .then(() => mongoose.connection.db.dropDatabase())
   .then(() => Artist.create(artistData))
   .then(() => console.log('Successfully seeded!'))

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+
+// .hero-body {
+//   background-image: url(https://tfl.gov.uk/cdn/static/cms/images/promos/tube-planned-works-edited-1_rdax_400x200.jpg);
+//   background-position: center;
+//   background-size: cover;
+//
+//   .title, .subtitle {
+//     color: white;
+//     text-shadow: 0 2px 3px #000;
+//   }
+// }
+
+
+$family-primary: 'Merriweather';
+$primary: #9c7f0d;
+
+$radius: 0;
+$radius-small:0;
+$radius-large:0;
+
+$column-gap: 0.25rem;
+
+
+
+@import 'bulma'
