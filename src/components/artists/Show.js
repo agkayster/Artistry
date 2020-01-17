@@ -47,7 +47,7 @@ class ArtistsShow extends React.Component {
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
 
-      .then(res => this.setState({artist: res.data }))
+      .then(()=> this.props.history.push('/api/artists'))
   }
 
   handleDeleteComment(e){
@@ -66,79 +66,79 @@ class ArtistsShow extends React.Component {
         <div className="container">
 
 
-            {!this.state.artist && <h2 className="title is-2">Loading...</h2>}
+          {!this.state.artist && <h2 className="title is-2">Loading...</h2>}
 
-            {this.state.artist && <div>
-              <header>
-                <h1 className="title is-2">Name: {this.state.artist.name}</h1>
+          {this.state.artist && <div>
+            <header>
+              <h1 className="title is-2">Name: {this.state.artist.name}</h1>
 
-                <hr />
-              </header>
-
-
-              <div className="card-image">
-                <figure className="image">
-                  <img src={this.state.artist.image} alt={this.state.artist.name} />
-                </figure>
-              </div>
-              <h2 className="subtitle is-4">Stage Name: {this.state.artist.stageName}</h2>
-              <h2 className="subtitle is-4">Nationality: {this.state.artist.nationality}</h2>
-              <h2 className="subtitle is-4">Date of Birth: {this.state.artist.dateOfBirth}</h2>
-              <h2 className="subtitle is-4">Genre: {this.state.artist.genre.join(', ')}</h2>
-              <h2 className="subtitle is-4">Occupation: {this.state.artist.occupation.join(', ')}</h2>
-              <h2 className="subtitle is-4">Instruments: {this.state.artist.instruments}</h2>
-              <h2 className="subtitle is-4">Years Active: {this.state.artist.yearsActive}</h2>
-              <h2 className="subtitle is-4">Labels: {this.state.artist.labels.join(', ')}</h2>
-              <h2 className="subtitle is-4">Associated Acts: {this.state.artist.associatedActs.join(', ')}</h2>
-              {Auth.isAuthenticated() && <div className="buttons">
-                <Link
-                  className="button"
-                  to={`/artists/${this.state.artist._id}/edit`}
-                >Edit</Link>
-
-                <button className="button is-danger">Delete</button>
-              </div>}
               <hr />
+            </header>
+
+
+            <div className="card-image">
+              <figure className="image">
+                <img src={this.state.artist.image} alt={this.state.artist.name} />
+              </figure>
+            </div>
+            <h2 className="subtitle is-4">Stage Name: {this.state.artist.stageName}</h2>
+            <h2 className="subtitle is-4">Nationality: {this.state.artist.nationality}</h2>
+            <h2 className="subtitle is-4">Date of Birth: {this.state.artist.dateOfBirth}</h2>
+            <h2 className="subtitle is-4">Genre: {this.state.artist.genre.join(', ')}</h2>
+            <h2 className="subtitle is-4">Occupation: {this.state.artist.occupation.join(', ')}</h2>
+            <h2 className="subtitle is-4">Instruments: {this.state.artist.instruments}</h2>
+            <h2 className="subtitle is-4">Years Active: {this.state.artist.yearsActive}</h2>
+            <h2 className="subtitle is-4">Labels: {this.state.artist.labels.join(', ')}</h2>
+            <h2 className="subtitle is-4">Associated Acts: {this.state.artist.associatedActs.join(', ')}</h2>
+            {Auth.isCurrentUser(this.state.artist.user) && <div className="buttons">
+              <Link
+                className="button"
+                to={`/artists/${this.state.artist._id}/edit`}
+              >Edit</Link>
+
+              <button className="button is-danger">Delete</button>
             </div>}
-            <div className="columns">
+            <hr />
+          </div>}
+          <div className="columns">
 
 
-              <div className="column">
+            <div className="column">
 
-                {this.state.artist.comments.map(comment =>
-                  <Comment key={comment._id} {...comment} handleDeleteComment={this.handleDeleteComment}/>
-                )}
+              {this.state.artist.comments.map(comment =>
+                <Comment key={comment._id} {...comment} handleDeleteComment={this.handleDeleteComment}/>
+              )}
 
 
-                {Auth.isAuthenticated() && <form onSubmit= {this.handleSubmit}>
-                  <hr />
-                  <div className="field">
-                    <label  className="label">Comment</label>
-                    <textarea
-                      name="content"
-                      className="textarea"
-                      placeholder="Add a comment..."
-                      onChange={this.handleChange}
-                      value= {this.state.formData.content}
-                    />
-                  </div>
-                  <div className="field">
-                    <label className="label">Rating (1 - 5)</label>
-                    <input
-                      name="rating"
-                      className="input"
-                      type="range"
-                      min="1"
-                      max="5"
-                      onChange={this.handleChange}
-                      value= {this.state.formData.rating}
-                    />
-                  </div>
-                  <button className="button is-info">Submit</button>
-                </form>}
-              </div>
+              {Auth.isAuthenticated() && <form onSubmit= {this.handleSubmit}>
+                <hr />
+                <div className="field">
+                  <label  className="label">Comment</label>
+                  <textarea
+                    name="content"
+                    className="textarea"
+                    placeholder="Add a comment..."
+                    onChange={this.handleChange}
+                    value= {this.state.formData.content}
+                  />
+                </div>
+                <div className="field">
+                  <label className="label">Rating (1 - 5)</label>
+                  <input
+                    name="rating"
+                    className="input"
+                    type="range"
+                    min="1"
+                    max="5"
+                    onChange={this.handleChange}
+                    value= {this.state.formData.rating}
+                  />
+                </div>
+                <button className="button is-info">Submit</button>
+              </form>}
             </div>
           </div>
+        </div>
 
       </section>
     )

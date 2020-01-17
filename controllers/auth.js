@@ -3,27 +3,26 @@ const jwt = require('jsonwebtoken')
 const {secret} = require('../config/environment')
 
 
-function registerRoute(req, res){
+function registerRoute(req, res, next) {
   User.create(req.body)
-    .then(() => res.json({message: 'Registration successful'}))
-    .catch(err => res.status(422).json(err))
+    .then((user) => res.json({ user }))
+    .catch(next)
 }
 
-function loginRoute(req, res){
-  User.findOne({email: req.body.email})//get this from user in User model
-    .then(user =>{
-      if(!user || !user.validatePassword(req.body.password)){//user here is
-        //specific
-        return res.sendStatus(401)
+function loginRoute(req, res, next) {
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      // if the user does not exist OR the user password is not valid
+      if(!user || !user.validatePassword(req.body.password)) {
+        return res.sendStatus(401) // send a 401 response
       }
-
-      //generate a token
-      //send it to the client
-      const token = jwt.sign({sub: user._id}, secret, {expiresIn: '6h'})
-      res.json({message: `Welcome back ${user.username}!`, token})
+      // generate a token
+      const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
+      // send it to the client
+      res.json({ message: `Welcome back ${user.username}!`, token, user})
     })
+    .catch(next)
 }
-
 
 
 module.exports = {

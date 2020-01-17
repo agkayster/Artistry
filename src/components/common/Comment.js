@@ -7,7 +7,7 @@ const Comment = ({ user, createdAt, rating, content, _id, handleDeleteComment })
       <div className="media-content">
         <div className="content" >
           <p>
-            <strong>{user.username}</strong>
+            <strong className="commentUser">User: {user.username}</strong>
             {' '}
             <br />
             <small>{(new Date(createdAt)).toLocaleDateString()}</small>

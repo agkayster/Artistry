@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const {dbURI} = require('./config/environment.js')
+const { port, dbURI } = require('./config/environment')
 const router = require('./config/routes')
 const bodyParser = require('body-parser')
 const queryHandler = require('./lib/queryHandler')
@@ -12,6 +12,8 @@ mongoose.plugin(require('mongoose-unique-validator'), {
 const app = express()
 
 mongoose.connect(dbURI, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+
+app.use(express.static(`${__dirname}/dist`))
 
 app.use(bodyParser.json())
 

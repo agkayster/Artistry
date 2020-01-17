@@ -23,6 +23,8 @@ const artistSchema = new mongoose.Schema({
   associatedActs: [String, true],
   comments: [commentSchema],
   user: {type: mongoose.Schema.ObjectId, ref: 'User'}
+},{
+  toJSON: { virtuals: true }
 })
 
 module.exports = mongoose.model('Artist', artistSchema)
