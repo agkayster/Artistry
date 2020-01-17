@@ -8,7 +8,10 @@
   "scripts": {
     "seed": "node db/seeds.js",
     "serve:backend": "nodemon",
-    "serve:frontend": "webpack-dev-server --node development"
+    "serve:frontend": "webpack-dev-server --node development",
+    "test": "mocha test/**/*_spec.js --require test/helper --recursive --exit",
+    "build": "webpack -p",
+    "start": "node index"
   },
   "dependencies": {
     "@babel/core": "^7.8.3",

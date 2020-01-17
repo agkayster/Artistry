@@ -59,11 +59,12 @@ class ArtistsShow extends React.Component {
   }
 
   render(){
-    console.log(this.state)
+    console.log(this.state.artist)
     if(!this.state.artist) return null
     return (
       <section className="section">
         <div className="container">
+
 
 
           {!this.state.artist && <h2 className="title is-2">Loading...</h2>}
@@ -90,10 +91,12 @@ class ArtistsShow extends React.Component {
             <h2 className="subtitle is-4">Years Active: {this.state.artist.yearsActive}</h2>
             <h2 className="subtitle is-4">Labels: {this.state.artist.labels.join(', ')}</h2>
             <h2 className="subtitle is-4">Associated Acts: {this.state.artist.associatedActs.join(', ')}</h2>
-            {Auth.isCurrentUser(this.state.artist.user) && <div className="buttons">
+            {Auth.isAuthenticated() && <div className="buttons">
               <Link
                 className="button"
+
                 to={`/artists/${this.state.artist._id}/edit`}
+
               >Edit</Link>
 
               <button className="button is-danger">Delete</button>
