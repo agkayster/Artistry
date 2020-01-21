@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Auth from '../../lib/Auth'
 import Comment from '../common/Comment'
+import StarRatingComponent from 'react-star-rating-component'
 
 
 
@@ -19,11 +20,17 @@ class ArtistsShow extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete =  this.handleDelete.bind(this)
     this.handleDeleteComment =  this.handleDeleteComment.bind(this)
+    this.handleStarClick =  this.handleStarClick.bind(this)
   }
 
   componentDidMount(){
     axios.get(`/api/artists/${this.props.match.params.id}`)
       .then(res => this.setState({artist: res.data}))
+  }
+
+  handleStarClick(nextValue) {
+    const formData = {...this.state.formData, rating: nextValue }
+    this.setState({ formData })
   }
 
   handleChange(e){
@@ -59,8 +66,9 @@ class ArtistsShow extends React.Component {
   }
 
   render(){
-    console.log(this.state.artist)
+
     if(!this.state.artist) return null
+    console.log(this.state.artist.user)
     return (
       <section className="section">
         <div className="container">
@@ -90,8 +98,9 @@ class ArtistsShow extends React.Component {
             <h2 className="subtitle is-4">Instruments: {this.state.artist.instruments}</h2>
             <h2 className="subtitle is-4">Years Active: {this.state.artist.yearsActive}</h2>
             <h2 className="subtitle is-4">Labels: {this.state.artist.labels.join(', ')}</h2>
+            <h2 className="subtitle is-4">Cost Per Show: {this.state.artist.costPerShow}</h2>
             <h2 className="subtitle is-4">Associated Acts: {this.state.artist.associatedActs.join(', ')}</h2>
-            {Auth.isAuthenticated() && <div className="buttons">
+            {Auth.isCurrentUser(this.state.artist.user) && <div className="buttons">
               <Link
                 className="button"
 
@@ -116,7 +125,7 @@ class ArtistsShow extends React.Component {
               {Auth.isAuthenticated() && <form onSubmit= {this.handleSubmit}>
                 <hr />
                 <div className="field">
-                  <label  className="label">Comment</label>
+                  <label  className="label"><h3 className="commentUser">Comment</h3></label>
                   <textarea
                     name="content"
                     className="textarea"
@@ -125,18 +134,20 @@ class ArtistsShow extends React.Component {
                     value= {this.state.formData.content}
                   />
                 </div>
-                <div className="field">
-                  <label className="label">Rating (1 - 5)</label>
-                  <input
+
+                <div>
+                  <h2>Rating: {this.state.formData.rating}</h2>
+                  <StarRatingComponent
                     name="rating"
-                    className="input"
-                    type="range"
-                    min="1"
-                    max="5"
-                    onChange={this.handleChange}
-                    value= {this.state.formData.rating}
+                    renderStarIcon={() => <span><i className="fas fa-headphones"></i></span>}
+                    starCount={5}
+                    onStarClick={this.handleStarClick}
+                    starColor={'rgb(255,140,0)'}
+                    emptyStarColor={'rgb(192,192,192)'}
+                    value={this.state.formData.rating}
                   />
                 </div>
+
                 <button className="button is-info">Submit</button>
               </form>}
             </div>

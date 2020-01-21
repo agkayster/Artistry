@@ -28,23 +28,25 @@ class App extends React.Component{
 
   render(){
     return(
-      <HashRouter>
-      <Navbar />
+      <div>
+        <HashRouter>
+          <Navbar />
 
-        <Switch>
-          <SecureRoute path="/artists/:id/edit" component={ArtistsEdit} />
-          <SecureRoute path="/artists/new" component={ArtistsNew} />
-          <Route path="/artists/:id" component={ArtistsShow}/>
-          <Route path="/artists" component={ArtistsIndex}/>
+          <Switch>
+            <SecureRoute path="/artists/:id/edit" component={ArtistsEdit} />
+            <SecureRoute path="/artists/new" component={ArtistsNew} />
+            <Route path="/artists/:id" component={ArtistsShow}/>
+            <Route path="/artists" component={ArtistsIndex}/>
 
 
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
 
-          <Route path="/" component={Home} />
-        </Switch>
+            <Route path="/" component={Home} />
+          </Switch>
 
-      </HashRouter>
+        </HashRouter>
+      </div>
     )
   }
 }

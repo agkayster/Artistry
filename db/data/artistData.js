@@ -9,6 +9,7 @@ module.exports = [{
   instruments: ['Vocals'],
   yearsActive: '2011 - present',
   labels: ['YBNL Nation'],
+  costPerShow: '100,000',
   associatedActs: ['Phyno', 'Pheelz', 'Lil Kesh', 'Remminese']
 }, {
   name: 'Shawn Corey Carter',
@@ -21,6 +22,7 @@ module.exports = [{
   instruments: ['Vocals'],
   yearsActive: '1988 - present',
   labels: ['Roc Nation', 'Atlantic', 'Def Jam', 'Roc-a-Fella'],
+  costPerShow: '240,000',
   associatedActs: ['DJ Khalid', 'Beyounce', 'Diddy', 'Naz']
 }, {
   name: 'Ayodeji Ibrahim Balogun',
@@ -33,6 +35,7 @@ module.exports = [{
   instruments: ['Vocals'],
   yearsActive: '2001 - present',
   labels: ['Starboy', 'RCA', 'Sony'],
+  costPerShow: '500,000',
   associatedActs: ['Banky W', 'Olamide', 'Sarz', 'Legendary Beats']
 }, {
   name: 'David Adedeji Adeleke',
@@ -45,6 +48,7 @@ module.exports = [{
   instruments: ['Vocals'],
   yearsActive: '2010 - present',
   labels: ['Sony', 'RCA', 'DMW'],
+  costPerShow: '300,000',
   associatedActs: ['BRED', 'Sina Rambo', 'Wizkid', 'Remminese']
 }, {
   name: 'Ejike Chiboka',
@@ -57,6 +61,7 @@ module.exports = [{
   instruments: ['Vocals'],
   yearsActive: '2011 - present',
   labels: ['YBNL Nation'],
+  costPerShow: '100,000',
   associatedActs: ['Phyno', 'Pheelz', 'Lil Kesh', 'Remminese']
 
 }]

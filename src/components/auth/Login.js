@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
 import Auth from '../../lib/Auth'
 
@@ -27,9 +26,11 @@ class Login extends React.Component {
 
     axios.post('/api/login', this.state.formData)
       .then(res => {
+        Auth.setUser(res.data.user)
         Auth.setToken(res.data.token) // store the token in localStorage
-        toast.success(res.data.message)
         this.props.history.push('/artists') // redirect to the cheeses INDEX page
+        // sessionStorage.setItem('UserName', this.state.formData.username)
+        // this.props.handleLogin()
       })
       .catch(() => {
         Auth.removeToken() // remove the token from localStorage
@@ -39,6 +40,7 @@ class Login extends React.Component {
   }
 
   render() {
+
     return (
       <section className="section">
         <div className="container">

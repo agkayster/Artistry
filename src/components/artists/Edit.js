@@ -73,7 +73,7 @@ class Edit extends React.Component {
               <label className="label">Stage Name</label>
               <input
                 className="input"
-                name="stage name"
+                name="stageName"
                 placeholder="eg: Raekwon"
                 value={this.state.formData.stageName || ''}
                 onChange={this.handleChange}
@@ -95,7 +95,7 @@ class Edit extends React.Component {
               <label className="label">Date of Birth</label>
               <input
                 className="input"
-                name="date of birth"
+                name="dateOfBirth"
                 placeholder="eg: 16-07-1990 "
                 value={this.state.formData.dateOfBirth || ''}
                 onChange={this.handleChange}
@@ -139,7 +139,7 @@ class Edit extends React.Component {
               <label className="label">Years Active</label>
               <input
                 className="input"
-                name="year active"
+                name="yearsActive"
                 placeholder="eg: 2011-present"
                 value={this.state.formData.yearsActive || ''}
                 onChange={this.handleChange}
@@ -158,10 +158,22 @@ class Edit extends React.Component {
               {this.state.errors.labels && <small className="help is-danger">{this.state.errors.labels}</small>}
             </div>
             <div className="field">
+              <label className="label">Cost Per Show</label>
+              <input
+                className="input"
+                type="string"
+                name="costPerShow"
+                placeholder="N1000"
+                value={this.state.formData.costPerShow || ''}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.costPerShow && <small className="help is-danger">{this.state.errors.costPerShow}</small>}
+            </div>
+            <div className="field">
               <label className="label">Associated Acts</label>
               <input
                 className="input"
-                name="associated acts"
+                name="associatedActs"
                 placeholder="eg: Phyno, Banky W"
                 value={this.state.formData.associatedActs || ''}
                 onChange={this.handleArrayChange}

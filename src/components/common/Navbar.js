@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
+
 import Auth from '../../lib/Auth'
 
 class Navbar extends React.Component {
@@ -10,10 +11,12 @@ class Navbar extends React.Component {
 
     this.state = {
       navbarOpen: false
+      // isLoggedIn: false
     }
 
     this.logout = this.logout.bind(this)
     this.toggleNavbar = this.toggleNavbar.bind(this)
+    // this.handleLogin = this.handleLogin.bind(this)
   }
 
   logout() {
@@ -24,6 +27,12 @@ class Navbar extends React.Component {
   toggleNavbar() {
     this.setState({ navbarOpen: !this.state.navbarOpen })
   }
+
+  // handleLogin() {
+  //   this.setState({
+  //     isLoggedIn: true
+  //   })
+  // }
 
   componentDidUpdate(prevProps) {
     if(prevProps.location.pathname !== this.props.location.pathname) {
@@ -37,7 +46,7 @@ class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item">
-             <i className="fab fa-modx"></i>
+              <i className="fab fa-modx"></i>
             </Link>
 
             <a

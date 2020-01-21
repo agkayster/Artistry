@@ -155,6 +155,18 @@ class New extends React.Component {
               {this.state.errors.labels && <small className="help is-danger">{this.state.errors.labels}</small>}
             </div>
             <div className="field">
+              <label className="label">Cost Per Show</label>
+              <input
+                className="input"
+                type="string"
+                name="costPerShow"
+                placeholder="N1000"
+                value={this.state.formData.costPerShow || ''}
+                onChange={this.handleChange}
+              />
+              {this.state.errors.costPerShow && <small className="help is-danger">{this.state.errors.costPerShow}</small>}
+            </div>
+            <div className="field">
               <label className="label">Associated Acts</label>
               <input
                 className="input"
