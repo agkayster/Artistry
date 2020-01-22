@@ -69,6 +69,6 @@ app.use(errorHandler)
 
 
 
-app.listen(port, () => console.log('Express is listening on port 4000'))
+app.listen(port, () => console.log(`Express is running on ${port}`))
 
-module.exports = app
+module.exports = app // We export "app" for testing purposes

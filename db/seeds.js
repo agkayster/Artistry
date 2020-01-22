@@ -11,7 +11,7 @@ mongoose.connect(dbURI, { useUnifiedTopology: true, useNewUrlParser: true, useCr
   .then(() => mongoose.connection.db.dropDatabase())
   .then(() => User.create(userData))
   .then(users => {
-    artistData = artistData.map(artist => {
+    artistData = artistData.map(artist => {// THIS IS TO GENERATE SYSTEM PRODUCED COMMENTS AND RATINGS FOR USERS IN THE COMMENT COMPONENT
       artist.user = users[0]
 
       if(artist.comments) {

@@ -10,8 +10,7 @@ const Comment = ({ user, createdAt, rating, content, _id, handleDeleteComment })
         <div className="content" >
           <span>
             <strong className="commentUser">User: {user.username}</strong>
-            {' '}
-            <br />
+            {' '}<br />
             <small>{(new Date(createdAt)).toLocaleDateString()}</small>
             <br />
             Comment: {content}
@@ -33,7 +32,7 @@ const Comment = ({ user, createdAt, rating, content, _id, handleDeleteComment })
       {Auth.isCurrentUser(user) && <div className="media-right">
         <button className="delete" id={_id} onClick={handleDeleteComment}></button>
       </div>}
-    </article>
+    </article>// Auth.isCurrentUser(user) is tied to Auth.js
   )
 }
 export default Comment

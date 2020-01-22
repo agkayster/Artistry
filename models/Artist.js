@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const commentSchema = new mongoose.Schema({
   content: {type: String, required: true, maxlength: 380},
   rating: {type: Number, min: 1, max: 5, required: true },
-  user: {type: mongoose.Schema.ObjectId, ref: 'User'}
+  user: {type: mongoose.Schema.ObjectId, ref: 'User'}// USER HERE IS LINKED TO SEEDS.JS
 },{
   timestamps: true
 })
@@ -23,7 +23,7 @@ const artistSchema = new mongoose.Schema({
   costPerShow: {type: String},
   associatedActs: [String, true],
   comments: [commentSchema],
-  user: {type: mongoose.Schema.ObjectId, ref: 'User'}
+  user: {type: mongoose.Schema.ObjectId, ref: 'User'}// USER HERE IS LINKED TO SEEDS.JS
 },{
   toJSON: { virtuals: true }
 })

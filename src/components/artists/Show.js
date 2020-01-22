@@ -102,7 +102,7 @@ class ArtistsShow extends React.Component {
             <h2 className="subtitle is-4">Associated Acts: {this.state.artist.associatedActs.join(', ')}</h2>
             {Auth.isCurrentUser(this.state.artist.user) && <div className="buttons">
               <Link
-                className="button"
+                className="button"// Auth.isCurrentUser is linked to artistData and userData
 
                 to={`/artists/${this.state.artist._id}/edit`}
 
