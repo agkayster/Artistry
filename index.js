@@ -53,7 +53,13 @@ const { port, dbURI } = require('./config/environment')
 
 const app = express()
 
-mongoose.connect(dbURI, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(dbURI, {
+  useUnifiedTopology: true, 
+  useNewUrlParser: true, 
+  useCreateIndex: true 
+})
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err))
 
 app.use(express.static(`${__dirname}/dist`))
 
