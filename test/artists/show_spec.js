@@ -6,10 +6,11 @@ describe('GET /artists/:id', () => {
   let artist = null
 
   beforeEach(done => {
-    Artist.create(artistData).then(artists => {
-      artist = artists[0]
-      done()
-    })
+    Artist.create(artistData)
+      .then(artists => {
+        artist = artists[0]
+        done()
+      })
   })
 
   afterEach(done => {

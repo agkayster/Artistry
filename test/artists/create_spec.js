@@ -15,26 +15,23 @@ const testData = {
   stageName: 'Brackash',
   nationality: 'Nigerian',
   dateOfBirth: '12-01-2020',
-  genre: 'Hip Hop',
+  genre: ['Hip Hop'],
   occupation: ['Singer'],
   instruments: ['Vocals'],
-  yearsActive: ['2011-present'],
+  yearsActive: '2011-present',
   labels: ['Sony'],
   costPerShow: '3000',
-  associatedActs: ['sick', 'one', 'mate'],
-  comments: ['Good guy']
+  associatedActs: ['sick', 'one', 'mate']
 }
 
 describe('POST /artists', () => {
   let token = null
-  
 
   beforeEach(done => {
-    User.create(testUser)
-      .then(user => {
-        token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
-        done()
-      })
+    User.create(testUser).then(user => {
+      token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' })
+      done()
+    })
   })
 
   afterEach(done => {
@@ -94,8 +91,7 @@ describe('POST /artists', () => {
           'yearsActive',
           'labels',
           'costPerShow',
-          'associatedActs',
-          'comments'
+          'associatedActs'
         ])
         done()
       })
@@ -108,23 +104,17 @@ describe('POST /artists', () => {
       .send(testData)
       .end((err, res) => {
         expect(res.body.name).to.eq(testData.name)
-        expect(res.body.streetAddress).to.eq(testData.streetAddress)
-        expect(res.body.plotType).to.deep.eq(testData.plotType)
-        expect(res.body.postCode).to.eq(testData.postCode)
-        expect(res.body.latitude).to.eq(testData.latitude)
-        expect(res.body.longitude).to.eq(testData.longitude)
-        expect(res.body.bioWasteAccepted).to.eq(testData.bioWasteAccepted)
-        expect(res.body.numOfSlots).to.eq(testData.numOfSlots)
-        expect(res.body.slotsAvailable).to.eq(testData.slotsAvailable)
-        expect(res.body.facilities).to.deep.eq(testData.facilities)
-        expect(res.body.costInvolved).to.eq(testData.costInvolved)
-        expect(res.body.costPerAnnum).to.eq(testData.costPerAnnum)
-        expect(res.body.conditionsForUse).to.deep.eq(testData.conditionsForUse)
-        expect(res.body.Volunteer).to.eq(testData.Volunteer)
-        expect(res.body.primaryContactName).to.eq(testData.primaryContactName)
-        expect(res.body.primaryContactEmail).to.eq(
-          testData.primaryContactEmail
-        )
+        expect(res.body.image).to.eq(testData.image)
+        expect(res.body.stageName).to.deep.eq(testData.stageName)
+        expect(res.body.nationality).to.eq(testData.nationality)
+        expect(res.body.dateOfBirth).to.eq(testData.dateOfBirth)
+        expect(res.body.genre).to.deep.eq(testData.genre)
+        expect(res.body.occupation).to.deep.eq(testData.occupation)
+        expect(res.body.instruments).to.deep.eq(testData.instruments)
+        expect(res.body.yearsActive).to.eq(testData.yearsActive)
+        expect(res.body.labels).to.deep.eq(testData.labels)
+        expect(res.body.costPerShow).to.eq(testData.costPerShow)
+        expect(res.body.associatedActs).to.deep.eq(testData.associatedActs)
         done()
       })
   })
