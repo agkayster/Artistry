@@ -1,6 +1,9 @@
 const Artist = require('../models/Artist')
 
 function indexRoute(req, res, next) {
+
+  req.query.name = new RegExp(req.query.name, 'i')
+
   // get all the artists from the database: MONGOOSE
   Artist.find(req.query)
     .then(artists => res.json(artists)) // send them as JSON: EXPRESS

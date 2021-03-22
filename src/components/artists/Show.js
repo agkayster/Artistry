@@ -13,7 +13,6 @@ class ArtistsShow extends React.Component {
 
     this.state = {
       formData: {rating: 1, content: ''}
-
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -50,7 +49,7 @@ class ArtistsShow extends React.Component {
 
   handleDelete(e){
     console.log(e.target)
-    axios.delete(`/api/artists/${this.props.match.params.id}/comments/${e.target.id}`,{
+    axios.delete(`/api/artists/${this.props.match.params.id}`,{
       headers: { Authorization: `Bearer ${Auth.getToken()}`}
     })
 
@@ -68,7 +67,7 @@ class ArtistsShow extends React.Component {
   render(){
 
     if(!this.state.artist) return null
-    console.log(this.state.artist.user)
+    console.log(this.state)
     return (
       <section className="section">
         <div className="container">

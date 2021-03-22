@@ -1,4 +1,4 @@
-import jwt from  'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 class Auth {
   static setToken(token) {
@@ -37,7 +37,7 @@ class Auth {
 
   static isCurrentUser(user) {
     const payload = this.getPayload()
-    return payload && user._id === payload.sub
+    return payload && user.id === payload.sub
   }
 }
 

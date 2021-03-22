@@ -6,14 +6,12 @@ import { Link } from 'react-router-dom'
 import StarRatingComponent from 'react-star-rating-component'
 
 class ArtistsIndex extends React.Component {
-
   constructor() {
     super()
     this.state = {
       searchTerm: '',
       sortTerm: 'name|asc',
       artists: []
-
     }
 
     this.filterArtists = this.filterArtists.bind(this)
@@ -22,8 +20,9 @@ class ArtistsIndex extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/artists')
-      .then(res => this.setState({ artists: res.data }))
+    axios
+      .get('/api/artists')
+      .then((res) => this.setState({ artists: res.data }))
   }
 
   handleKeyUp(e) {
@@ -38,8 +37,12 @@ class ArtistsIndex extends React.Component {
     const re = new RegExp(this.state.searchTerm, 'i')
     const [field, order] = this.state.sortTerm.split('|')
 
-    const filterArtists = _.filter(this.state.artists, artist => {
-      return re.test(artist.stageName) || re.test(artist.name) || re.test(artist.nationality)
+    const filterArtists = _.filter(this.state.artists, (artist) => {
+      return (
+        re.test(artist.stageName) ||
+        re.test(artist.name) ||
+        re.test(artist.nationality)
+      )
     })
     const sortedArtists = _.orderBy(filterArtists, [field], [order])
 
@@ -51,7 +54,9 @@ class ArtistsIndex extends React.Component {
       <section className="section index-background">
         <div className="container">
           <div className="box tableBorder">
-            <h3 className="subtitle is-size-3">Learn more about your favourite artists</h3>
+            <h3 className="subtitle is-size-3">
+              Learn more about your favourite artists
+            </h3>
 
             <div className="columns">
               <div className="column is-half">
@@ -59,7 +64,11 @@ class ArtistsIndex extends React.Component {
                   <span className="icon is-left">
                     <i className="fas fa-search"></i>
                   </span>
-                  <input className="input is-half" placeholder="search" onKeyUp={this.handleKeyUp} />
+                  <input
+                    className="input is-half"
+                    placeholder="search"
+                    onKeyUp={this.handleKeyUp}
+                  />
                 </div>
               </div>
 
@@ -81,16 +90,15 @@ class ArtistsIndex extends React.Component {
           </div>
 
           <div className="columns is-multiline">
-
             {!this.state.artists && <h2 className="title is-2">Loading...</h2>}
 
-            {this.filterArtists().map(artist =>
+            {this.filterArtists().map((artist) => (
               <div className="column is-one-quarter-desktop" key={artist._id}>
                 <Link to={`/artists/${artist._id}`}>
                   <div className="card">
-                    <div className="card-header">
+                    <header className="card-header">
                       <h2 className="card-header-title">{artist.stageName}</h2>
-                    </div>
+                    </header>
                     <div className="card-image">
                       <figure className="image">
                         <img src={artist.image} alt={artist.name} />
@@ -100,7 +108,11 @@ class ArtistsIndex extends React.Component {
                       <StarRatingComponent
                         name="rate2"
                         editing={false}
-                        renderStarIcon={() => <span><i className="fas fa-headphones"></i></span>}
+                        renderStarIcon={() => (
+                          <span>
+                            <i className="fas fa-headphones"></i>
+                          </span>
+                        )}
                         starCount={5}
                         starColor={'rgb(255,140,0)'}
                         emptyStarColor={'rgb(192,192,192)'}
@@ -110,8 +122,7 @@ class ArtistsIndex extends React.Component {
                   </div>
                 </Link>
               </div>
-            )}
-
+            ))}
           </div>
         </div>
       </section>
