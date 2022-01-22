@@ -1,12 +1,12 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 
-const env = process.env.NODE_ENV === 'production' ? (
-  new webpack.EnvironmentPlugin({ ...process.env })
-) : (
-  new Dotenv()
-)
+const env =
+	process.env.NODE_ENV === 'production'
+	  ? new webpack.EnvironmentPlugin({ ...process.env })
+	  : new Dotenv()
 
 module.exports = {
   entry: './src/app.js',
@@ -18,8 +18,11 @@ module.exports = {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
-      { test: /\.s(a|c)ss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] },
-      { test: /\.(png|jpeg|svg|gif)$/, loader: 'file-loader'}
+      {
+        test: /\.s(a|c)ss$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      { test: /\.(png|jpeg|svg|gif)$/, loader: 'file-loader' }
     ]
   },
   devServer: {
